@@ -10,19 +10,15 @@ export function HeroSection() {
           {/* Left content */}
           <div className="flex flex-col gap-6 lg:gap-8">
             {/* Badge */}
-            <Badge variant="secondary" className="w-fit">
+            {/* <Badge variant="secondary" className="w-fit">
               Find Your Tribe. Build Your Community.
-            </Badge>
+            </Badge> */}
 
             {/* Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-              <span className="text-foreground">
-                Discover Communities
-              </span>
+              <span className="text-foreground">Discover Communities</span>
               <br />
-              <span className="text-foreground">
-                Near You.
-              </span>
+              <span className="text-foreground">Near You.</span>
               <br />
               <span className="gradient-text-orange-purple">
                 Join Your Hood.
@@ -42,11 +38,7 @@ export function HeroSection() {
               <Button size="lg" variant="default" className="w-full sm:w-auto">
                 Explore Communities
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto"
-              >
+              <Button size="lg" variant="outline" className="w-full sm:w-auto">
                 For Organizers
               </Button>
             </div>

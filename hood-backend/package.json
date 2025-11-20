@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsx src/index.ts",
     "dev": "tsx watch src/index.ts",
-    "test:email": "tsx test-email.ts"
+    "test:email": "tsx test-email.ts",
+    "test:verification": "tsx test-verification.ts"
   },
   "keywords": [],
   "author": "",

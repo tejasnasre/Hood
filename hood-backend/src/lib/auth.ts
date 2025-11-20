@@ -7,7 +7,8 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:8000",
+  // baseURL should be your backend URL where Better Auth is running
+  baseURL: `http://localhost:${process.env.PORT || 8000}`,
   secret: process.env.BETTER_AUTH_SECRET,
 
   emailAndPassword: {
@@ -16,26 +17,20 @@ export const auth = betterAuth({
     minPasswordLength: 8,
     maxPasswordLength: 128,
 
-    // Send verification email
-    async sendVerificationEmail({ user, url, token }: any, request: any) {
-      const template = emailTemplates.verifyEmail(url, user.name);
-      await sendEmail({
-        to: user.email,
-        subject: template.subject,
-        html: template.html,
-        text: template.text,
-      });
-    },
-
     // Send password reset email
     async sendResetPassword({ user, url, token }: any, request: any) {
       const template = emailTemplates.resetPassword(url, user.name);
-      await sendEmail({
-        to: user.email,
-        subject: template.subject,
-        html: template.html,
-        text: template.text,
-      });
+
+      try {
+        await sendEmail({
+          to: user.email,
+          subject: template.subject,
+          html: template.html,
+          text: template.text,
+        });
+      } catch (error) {
+        throw error;
+      }
     },
 
     // Callback after password reset
@@ -51,6 +46,24 @@ export const auth = betterAuth({
 
     // Reset token expires in 1 hour
     resetPasswordTokenExpiresIn: 3600,
+  },
+
+  // Email verification configuration (root level, not inside emailAndPassword)
+  emailVerification: {
+    async sendVerificationEmail({ user, url, token }: any, request: any) {
+      const template = emailTemplates.verifyEmail(url, user.name);
+
+      try {
+        await sendEmail({
+          to: user.email,
+          subject: template.subject,
+          html: template.html,
+          text: template.text,
+        });
+      } catch (error) {
+        throw error; // Re-throw to let Better Auth handle it
+      }
+    },
   },
 
   // socialProviders: {

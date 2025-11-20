@@ -98,8 +98,6 @@ interface ErrorResponse {
 }
 
 const handleError = (error: any, res: Response): Response<ErrorResponse> => {
-  console.error("Auth Controller Error:", error);
-
   // Validation errors
   if (error instanceof z.ZodError) {
     return res.status(400).json({
@@ -282,7 +280,7 @@ export const signOut = async (req: Request, res: Response) => {
   }
 };
 
-// Send verification email to user
+// Send verification email to user (Manual trigger or resend)
 // POST /api/auth/send-verification-email
 export const sendVerificationEmail = async (req: Request, res: Response) => {
   try {
