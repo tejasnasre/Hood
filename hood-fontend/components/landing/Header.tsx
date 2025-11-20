@@ -46,13 +46,13 @@ export function Header() {
                   Communities
                 </Link>
                 <Link
-                  href="/auth/login"
+                  href="/auth/sign-in"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Login
                 </Link>
                 <Link
-                  href="/auth/signup"
+                  href="/auth/sign-up"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <ShimmerButton className="shadow-lg">
